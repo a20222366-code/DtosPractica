@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+</head>
+
+<body>
+
+<h1>🐜 Estado de Charlie</h1>
+
+<p>
+    Dimensión:
+    <span th:text="${estado.dimension}"></span>
+</p>
+
+<p>
+    Posición X:
+    <span th:text="${estado.posicionX}"></span>
+</p>
+
+<p>
+    Posición Y:
+    <span th:text="${estado.posicionY}"></span>
+</p>
+
+<p>
+    Dirección:
+    <span th:text="${estado.direccion}"></span>
+</p>
+
+<p>
+    Movimientos:
+    <span th:text="${estado.movimientos}"></span>
+</p>
+
+
+<h2>Terreno</h2>
+
+<!-- Inserta el fragmento del tablero y le pasa el terreno actual -->
+<!-- Reemplaza este div por el fragmento que muestra el tablero -->
+<div th:replace="~{fragments/tablero :: tablero(${estado.terreno}, ${estado.posicionX}, ${estado.posicionY})}">
+</div>
+
+
+</body>
+</html>

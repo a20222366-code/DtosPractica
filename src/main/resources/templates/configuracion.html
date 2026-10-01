@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hormiga Charlie</title>
+</head>
+
+<body>
+
+<h1>🐜 La Hormiga Charlie</h1>
+
+<!--  " <form th:object="${configuracion}"> "
+Este formulario está trabajando con el objeto configuracion que me mandó el Controller-->
+
+<form th:action="@{/simular}"
+      th:object="${configuracion}"
+      method="post">
+
+    <label>Dimensión inicial:</label>
+        <!--
+        <input th:field="*{dimension}">
+
+        Como el formulario tiene:
+
+        th:object="${configuracion}"
+
+        ese:
+
+        *{dimension}
+
+        hace referencia a:
+
+        ConfiguracionDTO.dimension
+
+        Entonces:
+
+        <input th:field="*{dimension}">
+
+        está vinculado con:
+
+        private int dimension;
+        -->
+    <input type="number"
+           th:field="*{dimension}"
+           min="1">
+
+    <br><br>
+
+    <label>Posición X:</label>
+    <input type="number"
+           th:field="*{posicionX}"
+           min="0">
+
+    <br><br>
+
+    <label>Posición Y:</label>
+    <input type="number"
+           th:field="*{posicionY}"
+           min="0">
+
+    <br><br>
+
+    <label>Dirección:</label>
+
+    <select th:field="*{direccion}">
+        <option value="DERECHA">Derecha</option>
+        <option value="IZQUIERDA">Izquierda</option>
+        <option value="ARRIBA">Arriba</option>
+        <option value="ABAJO">Abajo</option>
+    </select>
+
+    <br><br>
+
+    <div>
+        <label>Cantidad de fotos:</label>
+        <input type="number"
+               th:field="*{cantidadFotos}"
+               min="1">
+    </div>
+
+    <br>
+
+    <div>
+        <label>Ampliación:</label>
+        <input type="number"
+               th:field="*{ampliacion}"
+               min="1">
+    </div>
+
+    <br><br>
+
+    <button type="submit">
+        Iniciar simulación
+    </button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<!--
+    Esta parte del HTML se llama tablero
+    y recibe tres datos:
+    terreno, posicionX y posicionY.
+-->
+<div th:fragment="tablero(terreno, posicionX, posicionY)">
+
+    <table border="1">
+
+        <!--
+            Por cada fila que exista dentro de terreno,
+            crea un <tr>.
+        -->
+        <tr th:each="fila, i : ${terreno}">
+
+            <!--
+                Por cada celda de la fila,
+                crea un <td>.
+            -->
+            <td th:each="celda, j : ${fila}">
+
+                <!--
+                    Si la posición actual coincide con
+                    la posición de Charlie, mostramos la hormiga.
+                -->
+                <span th:if="${i.index == posicionX and j.index == posicionY}">
+                    🐜
+                </span>
+
+                <!--
+                    Si NO es la posición de Charlie
+                    y la celda contiene una miga,
+                    mostramos la miga.
+                -->
+                <span th:if="${(i.index != posicionX or j.index != posicionY) and celda == 1}"
+                      th:text="'🍞'">
+                </span>
+
+                <span th:if="${(i.index != posicionX or j.index != posicionY) and celda == 0}"
+                      th:text="'🟣'">
+                </span>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>
